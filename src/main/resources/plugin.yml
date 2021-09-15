@@ -1,0 +1,6 @@
+main: itemstackapi.main
+name: Serveur-API-ItemStack
+version: 1.0
+load: STARTUP
+api-version: 1.16
+description: "Serveur API ItemStack"
