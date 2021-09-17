@@ -2,7 +2,9 @@ package itemstackapi.itemStack.api;
 
 import org.bukkit.NamespacedKey;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataContainer;
+import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
 
 public class customItemStack
@@ -14,30 +16,44 @@ public class customItemStack
         return plugin;
     }
 
-    public static PersistentDataContainer getPersistentDataContainer(ItemStack itemStack)
+    public static NamespacedKey getKeyAsNameSpaced(customKey customKey)
     {
-        return itemStack.getItemMeta().getPersistentDataContainer();
+        return new NamespacedKey(getPlugin(), customKey.toString());
     }
 
-    public void test()
+    public static void setPersistentDataItemStack(ItemStack itemStack, customKey customKey, PersistentDataType persistentDataType)
     {
-
+        ItemMeta                itemMeta                = itemStack.getItemMeta();
+        PersistentDataContainer persistentDataContainer = itemMeta.getPersistentDataContainer();
+        persistentDataContainer.set(getKeyAsNameSpaced(customKey), persistentDataType, customKey.toString());
+        itemStack.setItemMeta(itemMeta);
     }
 
-
-    public static Boolean isCustomItemStack(ItemStack itemStack)
+    public static Boolean hasPersistentDataItemStack(ItemStack itemStack, customKey customKey, PersistentDataType persistentDataType)
     {
+        ItemMeta                itemMeta                = itemStack.getItemMeta();
+        PersistentDataContainer persistentDataContainer = itemMeta.getPersistentDataContainer();
+        if (persistentDataContainer.has(getKeyAsNameSpaced(customKey), persistentDataType))
+        {
+            if (persistentDataContainer.get(getKeyAsNameSpaced(customKey), persistentDataType).equals(customKey.toString()))
+            {
+                return true;
+            }
+        }
         return false;
     }
 
-    //make this as enum like for menuAPI
-    public enum key
+    public static Boolean isCustomItemStack(ItemStack itemStack, customKey customKey, PersistentDataType persistentDataType)
     {
-
+        if (hasPersistentDataItemStack(itemStack, customItemStack.customKey.custom, PersistentDataType.STRING))
+        {
+            return true;
+        }
+        return false;
     }
 
-    //make this as enum like for menuAPI
-    NamespacedKey namespacedKey = new NamespacedKey(getPlugin(), "");
-
-
+    public enum customKey
+    {
+        unmovable, custom
+    }
 }
