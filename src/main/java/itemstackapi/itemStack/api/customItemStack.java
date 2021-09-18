@@ -21,12 +21,34 @@ public class customItemStack
         return new NamespacedKey(getPlugin(), customKey.toString());
     }
 
+    public static void setPersistentDataItemStack(ItemStack itemStack, customKey customKey)
+    {
+        ItemMeta                itemMeta                = itemStack.getItemMeta();
+        PersistentDataContainer persistentDataContainer = itemMeta.getPersistentDataContainer();
+        persistentDataContainer.set(getKeyAsNameSpaced(customKey), PersistentDataType.STRING, customKey.toString());
+        itemStack.setItemMeta(itemMeta);
+    }
+
     public static void setPersistentDataItemStack(ItemStack itemStack, customKey customKey, PersistentDataType persistentDataType)
     {
         ItemMeta                itemMeta                = itemStack.getItemMeta();
         PersistentDataContainer persistentDataContainer = itemMeta.getPersistentDataContainer();
         persistentDataContainer.set(getKeyAsNameSpaced(customKey), persistentDataType, customKey.toString());
         itemStack.setItemMeta(itemMeta);
+    }
+
+    public static Boolean hasPersistentDataItemStack(ItemStack itemStack, customKey customKey)
+    {
+        ItemMeta                itemMeta                = itemStack.getItemMeta();
+        PersistentDataContainer persistentDataContainer = itemMeta.getPersistentDataContainer();
+        if (persistentDataContainer.has(getKeyAsNameSpaced(customKey), PersistentDataType.STRING))
+        {
+            if (persistentDataContainer.get(getKeyAsNameSpaced(customKey), PersistentDataType.STRING).equals(customKey.toString()))
+            {
+                return true;
+            }
+        }
+        return false;
     }
 
     public static Boolean hasPersistentDataItemStack(ItemStack itemStack, customKey customKey, PersistentDataType persistentDataType)
@@ -45,15 +67,24 @@ public class customItemStack
 
     public static Boolean isCustomItemStack(ItemStack itemStack, customKey customKey, PersistentDataType persistentDataType)
     {
-        if (hasPersistentDataItemStack(itemStack, customItemStack.customKey.custom, PersistentDataType.STRING))
+        if (hasPersistentDataItemStack(itemStack, customKey.custom, persistentDataType))
         {
             return true;
         }
         return false;
     }
 
-    public enum customKey
+    public static Boolean isCustomItemStack(ItemStack itemStack, customKey customKey)
     {
-        unmovable, custom
+        if (hasPersistentDataItemStack(itemStack, customKey.custom, PersistentDataType.STRING))
+        {
+            return true;
+        }
+        return false;
+    }
+
+    public static enum customKey
+    {
+        custom, ile, voyage, shop, enchant, quest, compass
     }
 }
