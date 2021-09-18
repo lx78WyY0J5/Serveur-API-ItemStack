@@ -1,4 +1,4 @@
-package itemstackapi.itemStack.itemStacks;
+package itemstackapi.itemStack.itemStacks.liste;
 
 import itemstackapi.itemStack.api.customItemStack;
 import org.bukkit.Material;
@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class mainMenu
 {
-    public ItemStack ItemStackCompass()
+    public static ItemStack ItemStackCompass()
     {
         ItemStack is   = new ItemStack(Material.COMPASS);
         ItemMeta  meta = is.getItemMeta();
@@ -26,7 +26,7 @@ public class mainMenu
         return is;
     }
 
-    public ItemStack ItemStackIle()
+    public static ItemStack ItemStackIle()
     {
         ItemStack is   = new ItemStack(Material.OAK_SAPLING);
         ItemMeta  meta = is.getItemMeta();
@@ -43,7 +43,7 @@ public class mainMenu
         return is;
     }
 
-    public ItemStack ItemStackVoyage()
+    public static ItemStack ItemStackVoyage()
     {
         ItemStack is   = new ItemStack(Material.MINECART);
         ItemMeta  meta = is.getItemMeta();
@@ -60,7 +60,7 @@ public class mainMenu
         return is;
     }
 
-    public ItemStack ItemStackShop()
+    public static ItemStack ItemStackShop()
     {
         ItemStack is   = new ItemStack(Material.EMERALD);
         ItemMeta  meta = is.getItemMeta();
@@ -78,7 +78,7 @@ public class mainMenu
         return is;
     }
 
-    public ItemStack ItemStackShopEnchant()
+    public static ItemStack ItemStackShopEnchant()
     {
         ItemStack is   = new ItemStack(Material.ENCHANTED_BOOK);
         ItemMeta  meta = is.getItemMeta();
@@ -95,7 +95,7 @@ public class mainMenu
         return is;
     }
 
-    public ItemStack ItemStackQuest()
+    public static ItemStack ItemStackQuest()
     {
         ItemStack is   = new ItemStack(Material.WRITABLE_BOOK);
         ItemMeta  meta = is.getItemMeta();
