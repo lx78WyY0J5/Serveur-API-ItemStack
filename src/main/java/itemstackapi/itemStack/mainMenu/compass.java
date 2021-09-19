@@ -1,8 +1,8 @@
-package itemstackapi.itemStack.itemStacks.interaction;
+package itemstackapi.itemStack.mainMenu;
 
 import itemstackapi.itemStack.api.customItemStack;
-import itemstackapi.itemStack.itemStacks.liste.mainMenu;
-import org.bukkit.Bukkit;
+import itemstackapi.itemStack.list.mainMenu;
+import menu.api.customInventory;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -11,7 +11,6 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
-import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import java.io.IOException;
@@ -19,7 +18,7 @@ import java.util.ArrayList;
 
 public class compass implements Listener
 {
-    public static ArrayList<Integer> listPose()
+    public ArrayList<Integer> listPose()
     {
         ArrayList<Integer> listPose = new ArrayList<>();
         listPose.add(9);
@@ -43,7 +42,7 @@ public class compass implements Listener
         return false;
     }
 
-    public int getPlayerCompassSlot()
+    public int getPlayerCompassSlot(Player p)
     {
         //return this value by default while no config for this
         return 9;
@@ -53,7 +52,7 @@ public class compass implements Listener
     {
         if (!playerHasCompass(p))
         {
-            p.getInventory().setItem(getPlayerCompassSlot(), mainMenu.ItemStackCompass());
+            p.getInventory().setItem(getPlayerCompassSlot(p), mainMenu.ItemStackCompass());
         }
     }
 
@@ -78,17 +77,17 @@ public class compass implements Listener
         }
     }
 
-    public void OpenCompass(Player player) throws IllegalArgumentException, IOException
+    public static void OpenCompass(Player player) throws IllegalArgumentException, IOException
     {
         //Gold      gold = new Gold();
-        //replace this menu whith custom menu
-        Inventory Menu = Bukkit.createInventory(null, 9, "§6Menu" /*+ "§f, " + gold.GetGoldFormat(player) + " Gold"*/);
-        Menu.addItem(mainMenu.ItemStackIle());
-        Menu.addItem(mainMenu.ItemStackShop());
-        Menu.addItem(mainMenu.ItemStackShopEnchant());
-        Menu.addItem(mainMenu.ItemStackVoyage());
-        Menu.addItem(mainMenu.ItemStackQuest());
-        player.openInventory(Menu);
+        //Inventory       Menu            = Bukkit.createInventory(null, 9, "§6Menu" /*+ "§f, " + gold.GetGoldFormat(player) + " Gold"*/);
+        customInventory customInventory = new customInventory(menu.api.customInventory.CustomInventoryType.MENU, 9, "§6Menu");
+        customInventory.getInventory().addItem(mainMenu.ItemStackIle());
+        customInventory.getInventory().addItem(mainMenu.ItemStackShop());
+        customInventory.getInventory().addItem(mainMenu.ItemStackShopEnchant());
+        customInventory.getInventory().addItem(mainMenu.ItemStackVoyage());
+        customInventory.getInventory().addItem(mainMenu.ItemStackQuest());
+        player.openInventory(customInventory.getInventory());
     }
 
     @EventHandler

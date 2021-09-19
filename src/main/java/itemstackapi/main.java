@@ -1,5 +1,6 @@
 package itemstackapi;
 
+import itemstackapi.itemStack.mainMenu.compass;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -32,6 +33,7 @@ public class main extends JavaPlugin
 
     public void registerEvents()
     {
+        Bukkit.getPluginManager().registerEvents(new compass(), this);
     }
 
     public void registerCommands()

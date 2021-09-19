@@ -1,4 +1,4 @@
-package itemstackapi.itemStack.itemStacks.liste;
+package itemstackapi.itemStack.list;
 
 import itemstackapi.itemStack.api.customItemStack;
 import org.bukkit.Material;
