@@ -83,7 +83,7 @@ public class customItemStack
         return false;
     }
 
-    public static enum customKey
+    public enum customKey
     {
         custom, ile, voyage, shop, enchant, quest, compass
     }
