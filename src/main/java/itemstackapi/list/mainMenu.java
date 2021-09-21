@@ -1,6 +1,6 @@
-package itemstackapi.itemStack.list;
+package itemstackapi.list;
 
-import itemstackapi.itemStack.api.customItemStack;
+import itemstackapi.persistentDataAPI;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -21,8 +21,8 @@ public class mainMenu
         Lore.add(" ");
         meta.setLore(Lore);
         is.setItemMeta(meta);
-        customItemStack.setPersistentDataItemStack(is, customItemStack.customKey.custom);
-        customItemStack.setPersistentDataItemStack(is, customItemStack.customKey.compass);
+        persistentDataAPI.setPersistentDataItemStack(is, persistentDataAPI.customKey.custom);
+        persistentDataAPI.setPersistentDataItemStack(is, persistentDataAPI.customKey.compass);
         return is;
     }
 
@@ -38,8 +38,8 @@ public class mainMenu
         Lore.add(" ");
         meta.setLore(Lore);
         is.setItemMeta(meta);
-        customItemStack.setPersistentDataItemStack(is, customItemStack.customKey.custom);
-        customItemStack.setPersistentDataItemStack(is, customItemStack.customKey.ile);
+        persistentDataAPI.setPersistentDataItemStack(is, persistentDataAPI.customKey.custom);
+        persistentDataAPI.setPersistentDataItemStack(is, persistentDataAPI.customKey.ile);
         return is;
     }
 
@@ -55,8 +55,8 @@ public class mainMenu
         Lore.add(" ");
         meta.setLore(Lore);
         is.setItemMeta(meta);
-        customItemStack.setPersistentDataItemStack(is, customItemStack.customKey.custom);
-        customItemStack.setPersistentDataItemStack(is, customItemStack.customKey.voyage);
+        persistentDataAPI.setPersistentDataItemStack(is, persistentDataAPI.customKey.custom);
+        persistentDataAPI.setPersistentDataItemStack(is, persistentDataAPI.customKey.voyage);
         return is;
     }
 
@@ -73,8 +73,8 @@ public class mainMenu
         Lore.add(" ");
         meta.setLore(Lore);
         is.setItemMeta(meta);
-        customItemStack.setPersistentDataItemStack(is, customItemStack.customKey.custom);
-        customItemStack.setPersistentDataItemStack(is, customItemStack.customKey.shop);
+        persistentDataAPI.setPersistentDataItemStack(is, persistentDataAPI.customKey.custom);
+        persistentDataAPI.setPersistentDataItemStack(is, persistentDataAPI.customKey.shop);
         return is;
     }
 
@@ -90,8 +90,8 @@ public class mainMenu
         Lore.add(" ");
         meta.setLore(Lore);
         is.setItemMeta(meta);
-        customItemStack.setPersistentDataItemStack(is, customItemStack.customKey.custom);
-        customItemStack.setPersistentDataItemStack(is, customItemStack.customKey.enchant);
+        persistentDataAPI.setPersistentDataItemStack(is, persistentDataAPI.customKey.custom);
+        persistentDataAPI.setPersistentDataItemStack(is, persistentDataAPI.customKey.enchant);
         return is;
     }
 
@@ -107,8 +107,8 @@ public class mainMenu
         Lore.add(" ");
         meta.setLore(Lore);
         is.setItemMeta(meta);
-        customItemStack.setPersistentDataItemStack(is, customItemStack.customKey.custom);
-        customItemStack.setPersistentDataItemStack(is, customItemStack.customKey.quest);
+        persistentDataAPI.setPersistentDataItemStack(is, persistentDataAPI.customKey.custom);
+        persistentDataAPI.setPersistentDataItemStack(is, persistentDataAPI.customKey.quest);
         return is;
     }
 }

@@ -1,6 +1,6 @@
 package itemstackapi;
 
-import itemstackapi.itemStack.mainMenu.compass;
+import itemstackapi.mainMenu.compass;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
 

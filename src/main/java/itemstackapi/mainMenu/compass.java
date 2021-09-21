@@ -1,8 +1,8 @@
-package itemstackapi.itemStack.mainMenu;
+package itemstackapi.mainMenu;
 
-import itemstackapi.itemStack.api.customItemStack;
-import itemstackapi.itemStack.list.mainMenu;
-import menu.api.customInventory;
+import itemstackapi.list.mainMenu;
+import itemstackapi.persistentDataAPI;
+import menuapi.api.customInventory;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -34,9 +34,15 @@ public class compass implements Listener
     {
         for (int i : listPose())
         {
-            if (customItemStack.hasPersistentDataItemStack(p.getInventory().getItem(i), customItemStack.customKey.compass) && p.getInventory().getItem(i).equals(mainMenu.ItemStackCompass()))
+            if (p.getInventory().getItem(i) != null)
             {
-                return true;
+                if (persistentDataAPI.hasPersistentDataItemStack(p.getInventory().getItem(i), persistentDataAPI.customKey.compass))
+                {
+                    if (p.getInventory().getItem(i).equals(mainMenu.ItemStackCompass()))
+                    {
+                        return true;
+                    }
+                }
             }
         }
         return false;
@@ -77,25 +83,12 @@ public class compass implements Listener
         }
     }
 
-    public static void OpenCompass(Player player) throws IllegalArgumentException, IOException
-    {
-        //Gold      gold = new Gold();
-        //Inventory       Menu            = Bukkit.createInventory(null, 9, "§6Menu" /*+ "§f, " + gold.GetGoldFormat(player) + " Gold"*/);
-        customInventory customInventory = new customInventory(menu.api.customInventory.CustomInventoryType.MENU, 9, "§6Menu");
-        customInventory.getInventory().addItem(mainMenu.ItemStackIle());
-        customInventory.getInventory().addItem(mainMenu.ItemStackShop());
-        customInventory.getInventory().addItem(mainMenu.ItemStackShopEnchant());
-        customInventory.getInventory().addItem(mainMenu.ItemStackVoyage());
-        customInventory.getInventory().addItem(mainMenu.ItemStackQuest());
-        player.openInventory(customInventory.getInventory());
-    }
-
     @EventHandler
     public void PlayerClickCompass(InventoryClickEvent e) throws IllegalArgumentException, IOException
     {
         if (e.getCurrentItem() != null)
         {
-            if (customItemStack.hasPersistentDataItemStack(e.getCurrentItem(), customItemStack.customKey.compass))
+            if (persistentDataAPI.hasPersistentDataItemStack(e.getCurrentItem(), persistentDataAPI.customKey.compass))
             {
                 e.setCancelled(true);
                 OpenCompass((Player) e.getWhoClicked());
@@ -114,5 +107,18 @@ public class compass implements Listener
                 }
             }
         }
+    }
+
+    public static void OpenCompass(Player player) throws IllegalArgumentException, IOException
+    {
+        //Gold      gold = new Gold();
+        //Inventory       Menu            = Bukkit.createInventory(null, 9, "§6Menu" /*+ "§f, " + gold.GetGoldFormat(player) + " Gold"*/);
+        customInventory inventoryBuilder = new customInventory(customInventory.CustomInventoryType.SKYBLOCK, 9, "§6Menu");
+        inventoryBuilder.getInventory().addItem(mainMenu.ItemStackIle());
+        inventoryBuilder.getInventory().addItem(mainMenu.ItemStackShop());
+        inventoryBuilder.getInventory().addItem(mainMenu.ItemStackShopEnchant());
+        inventoryBuilder.getInventory().addItem(mainMenu.ItemStackVoyage());
+        inventoryBuilder.getInventory().addItem(mainMenu.ItemStackQuest());
+        player.openInventory(inventoryBuilder.getInventory());
     }
 }
